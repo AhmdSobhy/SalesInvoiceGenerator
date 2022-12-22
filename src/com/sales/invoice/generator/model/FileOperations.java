@@ -58,13 +58,19 @@ public class FileOperations {
 
     public void writeFile(ArrayList<InvoiceHeader> invoiceHeaders){
 
-        File csvFile = new File("InvoiceHeader.csv");
+        File headerFile = new File("InvoiceHeader.csv");
+        File lineFile = new File("InvoiceLine.csv");
         try {
-            PrintWriter out = new PrintWriter(csvFile);
+            PrintWriter headerOut = new PrintWriter(headerFile);
+            PrintWriter lineOut = new PrintWriter(lineFile);
             for (InvoiceHeader invoice : invoiceHeaders) {
-                out.printf("%s, %s, %s\n", invoice.getInvoiceNum(), invoice.getInvoiceDate(), invoice.getCustomerName(), invoice.getInvoiceNum());
+                headerOut.printf("%s,%s,%s\n", invoice.getInvoiceNum(), invoice.getInvoiceDate(), invoice.getCustomerName(), invoice.getInvoiceNum());
+                for (InvoiceLine line: invoice.getInvoiceLines()) {
+                    lineOut.printf("%d,%s,%d,%s\n",line.getInvoiceNum(),line.getItemName(),line.getItemPrice(),line.getCount());
+                }
             }
-            out.close();
+            lineOut.close();
+            headerOut.close();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }

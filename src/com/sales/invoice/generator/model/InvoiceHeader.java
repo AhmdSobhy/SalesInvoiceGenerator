@@ -9,17 +9,12 @@ public class InvoiceHeader {
     private String customerName;
     private ArrayList<InvoiceLine> invoiceLines;
 
+    public InvoiceHeader(){}
     public InvoiceHeader(int invoiceNum, String invoiceDate, String customerName, ArrayList<InvoiceLine> invoiceLines) {
         this.invoiceNum = invoiceNum;
         this.invoiceDate = invoiceDate;
         this.customerName = customerName;
         this.invoiceLines = invoiceLines;
-    }
-
-    public void createInvoice(int invoiceNum, String invoiceDate, String customerName){
-        this.invoiceNum = invoiceNum;
-        this.invoiceDate = invoiceDate;
-        this.customerName = customerName;
     }
 
     public void addInvoiceLines(ArrayList<InvoiceLine> invoiceLines){

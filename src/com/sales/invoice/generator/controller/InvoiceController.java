@@ -5,17 +5,20 @@ import com.sales.invoice.generator.view.*;
 import java.util.ArrayList;
 
 public class InvoiceController {
-    private InvoiceHeader invoiceHeader ;
-    private InvoiceView invoiceView;
-
-    private FileOperations fileOperations;
-
+    private InvoiceHeader invoiceHeader = new InvoiceHeader() ;
+    private InvoiceView invoiceView = new InvoiceView();
+    private CreateInvoiceView createInvoiceView = new CreateInvoiceView();
+    private FileOperations fileOperations = new FileOperations();
     private ArrayList<InvoiceHeader> headers;
     private ArrayList<InvoiceLine> lines;
 
-    public InvoiceController(FileOperations fileOperations, InvoiceView invoiceView) {
-        this.fileOperations =fileOperations;
-        this.invoiceView = invoiceView;
+    public InvoiceController() {
+
+    }
+
+    public void createInvoice(){
+        ArrayList<InvoiceHeader> invoice = createInvoiceView.createInvoiceLayout(invoiceHeader);
+        fileOperations.writeFile(invoice);
     }
 
     public void addInvoicesLines(){
@@ -31,10 +34,6 @@ public class InvoiceController {
         for (InvoiceHeader header:headers) {
             invoiceView.printInvoice(header);
         }
-    }
-
-    public InvoiceView getInvoiceView() {
-        return invoiceView;
     }
 
 }
