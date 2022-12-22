@@ -27,6 +27,7 @@ public class FileOperations {
 
 
         } catch (FileNotFoundException e) {
+            System.out.println("File not Found");
             throw new RuntimeException(e);
         }
 
@@ -50,6 +51,7 @@ public class FileOperations {
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            System.out.println("File not Found");
             throw new RuntimeException(e);
         }
 
@@ -65,6 +67,7 @@ public class FileOperations {
             PrintWriter lineOut = new PrintWriter(lineFile);
             for (InvoiceHeader invoice : invoiceHeaders) {
                 headerOut.printf("%s,%s,%s\n", invoice.getInvoiceNum(), invoice.getInvoiceDate(), invoice.getCustomerName(), invoice.getInvoiceNum());
+
                 for (InvoiceLine line: invoice.getInvoiceLines()) {
                     lineOut.printf("%d,%s,%d,%s\n",line.getInvoiceNum(),line.getItemName(),line.getItemPrice(),line.getCount());
                 }
@@ -72,6 +75,7 @@ public class FileOperations {
             lineOut.close();
             headerOut.close();
         } catch (FileNotFoundException e) {
+            System.out.println("File not Found");
             throw new RuntimeException(e);
         }
 

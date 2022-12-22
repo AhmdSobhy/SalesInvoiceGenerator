@@ -17,7 +17,13 @@ public class HomeView {
         System.out.println("2- Show all Invoices");
 
         System.out.print(">> ");
-        int option = scanner.nextInt();
+        int option = 0;
+        try {
+            option = scanner.nextInt();
+        }catch (Exception e){
+            System.out.println("Please enter a valid Number 1 or 2\n");
+            startHomePage();
+        }
         System.out.println("=============================================");
         switch (option){
             case 1:
@@ -28,6 +34,7 @@ public class HomeView {
                 break;
             default:
                 System.out.println("No other option");
+                System.out.println("Please enter a valid Number 1 or 2");
         }
 
 
